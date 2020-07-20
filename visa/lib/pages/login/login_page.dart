@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login2.dart';
 import './../home/home_page.dart';
 import './../tabs/tabs.dart';
 
@@ -11,21 +12,30 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff6592F2),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(2.0),
+        child: AppBar(
+          backgroundColor: Color(0xff6592F2),
+          automaticallyImplyLeading: false,
+          elevation: 0,
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
             children: <Widget>[
-              SizedBox(
+              Container(
+                width: double.infinity,
                 height: 203,
+                color: Color(0xff6592F2),
               ),
 // Phần Tab bar bottom
               Container(
                 alignment: Alignment.bottomCenter,
-                margin: EdgeInsets.fromLTRB(0, 203, 0, 0),
+                margin: EdgeInsets.fromLTRB(0, 187, 0, 0),
                 width: double.infinity,
                 height: 494,
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
                 decoration: BoxDecoration(
                   color: Color(0xfff9f9f9),
                   borderRadius: BorderRadius.only(
@@ -36,115 +46,103 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // QR pay
-                    Container(
-                      margin: EdgeInsets.only(left: 16, right: 16),
-                      child: FloatingActionButton(
-                        heroTag: null,
-                        onPressed: null,
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                        elevation: 0.0,
-                        child: Column(
-                          children: <Widget>[
-                            ImageIcon(
-                              AssetImage('assets/icons/qr.png'),
-                              color: Color(0xff5289F4),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Text(
+// QR pay
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {},
+                          child: Column(
+                            children: <Widget>[
+                              ImageIcon(
+                                AssetImage('assets/icons/qr.png'),
+                                color: Color(0xff5289F4),
+                              ),
+                              SizedBox(height: 12),
+                              Text(
                                 'QR pay',
                                 style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff444444)),
+                                  fontSize: 13,
+                                  color: Color(0xff444444),
+                                ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    // ATM
-                    Container(
-                      margin: EdgeInsets.only(left: 16, right: 16),
-                      child: FloatingActionButton(
-                        heroTag: null,
-                        onPressed: null,
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                        elevation: 0.0,
-                        child: Column(
-                          children: <Widget>[
-                            ImageIcon(
-                              AssetImage('assets/icons/atm.png'),
-                              color: Color(0xff5289F4),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Text(
+// ATM
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {},
+                          child: Column(
+                            children: <Widget>[
+                              ImageIcon(
+                                AssetImage('assets/icons/atm.png'),
+                                color: Color(0xff5289F4),
+                              ),
+                              SizedBox(height: 12),
+                              Text(
                                 'ATM',
                                 style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff444444)),
+                                  fontSize: 13,
+                                  color: Color(0xff444444),
+                                ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    // Đặt vé
-                    Container(
-                      margin: EdgeInsets.only(left: 16, right: 16),
-                      child: FloatingActionButton(
-                        heroTag: null,
-                        onPressed: null,
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                        elevation: 0.0,
-                        child: Column(
-                          children: <Widget>[
-                            ImageIcon(
-                              AssetImage('assets/icons/ticket.png'),
-                              color: Color(0xff5289F4),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Text(
+// Đặt vé
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {},
+                          child: Column(
+                            children: <Widget>[
+                              ImageIcon(
+                                AssetImage('assets/icons/ticket.png'),
+                                color: Color(0xff5289F4),
+                              ),
+                              SizedBox(height: 12),
+                              Text(
                                 'Đặt vé',
                                 style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff444444)),
+                                  fontSize: 13,
+                                  color: Color(0xff444444),
+                                ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    // Hỗ trợ
-                    Container(
-                      margin: EdgeInsets.only(left: 16, right: 16),
-                      child: FloatingActionButton(
-                        heroTag: null,
-                        onPressed: null,
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                        elevation: 0.0,
-                        child: Column(
-                          children: <Widget>[
-                            ImageIcon(
-                              AssetImage('assets/icons/support.png'),
-                              color: Color(0xff5289F4),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Text(
+// Hỗ trợ
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        child: FlatButton(
+                          onPressed: () => {},
+                          child: Column(
+                            children: <Widget>[
+                              ImageIcon(
+                                AssetImage('assets/icons/support.png'),
+                                color: Color(0xff5289F4),
+                              ),
+                              SizedBox(height: 12),
+                              Text(
                                 'Hỗ trợ',
                                 style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff444444)),
+                                  fontSize: 13,
+                                  color: Color(0xff444444),
+                                ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -224,15 +222,11 @@ class _LoginPageState extends State<LoginPage> {
                       height: 21,
                       margin: EdgeInsets.fromLTRB(0, 8, 0, 16),
                       child: FlatButton.icon(
-                        // color: Colors.red,
                         icon: Image.asset(
                           "assets/icons/TouchID.jpg",
-                        ), //`Icon` to display
-                        label: Text(''), //`Text` to display
-                        onPressed: () {
-                          //Code to execute when Floating Action Button is clicked
-                          //...
-                        },
+                        ),
+                        label: Text(''),
+                        onPressed: () {},
                       ),
                     ),
 // Login Button
@@ -268,7 +262,12 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: TextDecoration.underline,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LogIn2()));
+                        },
                       ),
                     ),
                   ],
@@ -277,7 +276,7 @@ class _LoginPageState extends State<LoginPage> {
 
 // Phần Đăng ký tài khoản
               Container(
-                height: 70,
+                height: 87,
                 margin: EdgeInsets.only(top: 681),
                 color: Color(0xff5DC9A0),
                 alignment: Alignment.topCenter,

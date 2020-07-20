@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:visa/pages/chuyen_khoan/chuyen_khoan.dart';
+import 'package:visa/pages/qr/yc_thanh_toan.dart';
 import 'package:visa/pages/thanh_toan/thanh_toan.dart';
+import 'package:visa/pages/tin_tuc/news.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,26 +31,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1F68F4),
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xff1F68F4),
-      //   elevation: 0,
-      //   automaticallyImplyLeading: false,
-      // ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(2.0),
+        child: AppBar(
+          backgroundColor: Color(0xff1F68F4),
+          automaticallyImplyLeading: false,
+          elevation: 0,
+        ),
+      ),
       body: SafeArea(
-        child: Container(
-          color: Color(0xff1F68F4),
+        child: SingleChildScrollView(
           child: Stack(
             children: <Widget>[
-              Padding(
+              // Thông tin tài khoản
+              Container(
+                width: double.infinity,
+                height: 161,
+                color: Color(0xff1F68F4),
                 padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 12),
+                    Align(
+                      alignment: Alignment.centerLeft,
                       child: Text(
-                        'Xin chào, Đỗ Quang Nguyên',
+                        "Xin chào, Đỗ Quang Nguyên",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -56,76 +62,69 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Tài khoản thanh toán',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                            textAlign: TextAlign.left,
+                    SizedBox(height: 22),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Tài khoản thanh toán',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
-                          Text(
-                            "1014686229",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Số dư hiện tại',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            "12.000.000",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'VND',
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "1014686229",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
                         ),
+                      ],
+                    ),
+                    SizedBox(height: 6),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Số dư hiện tại',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "12.000.000",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 6),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'VND',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+              // Các chức năng
               Container(
                 width: double.infinity,
-                height: double.infinity,
                 margin: EdgeInsets.only(top: 145),
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -137,6 +136,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Column(
                   children: <Widget>[
+                    SizedBox(height: 4),
 // Row Chức năng
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,8 +149,8 @@ class _HomePageState extends State<HomePage> {
                             color: Color(0xff323232),
                           ),
                         ),
-                        FlatButton(
-                          onPressed: this._showModalBottomSheet,
+                        InkWell(
+                          onTap: this._showModalBottomSheet,
                           child: Text(
                             'Tất cả',
                             style: TextStyle(
@@ -162,9 +162,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 24),
 // Slides Chức năng
                     CarouselSlider(
-                      height: 166,
+                      height: 142,
                       initialPage: 0,
                       viewportFraction: 1.0,
                       enableInfiniteScroll: false,
@@ -184,16 +185,9 @@ class _HomePageState extends State<HomePage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    width: 94,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: chuyenKhoan,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
@@ -216,22 +210,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: thanhToan,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: thanhToan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/thanh_toan.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -248,22 +235,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/tiet_kiem.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -280,22 +260,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: yc_thanh_toan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/yc_thanh_toan.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -314,26 +287,20 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
+                              SizedBox(height: 24),
 // Hàng 2
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    width: 94,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/vi_tai_khoan.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -350,21 +317,14 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: thanhToan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage('assets/icons/the.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -381,22 +341,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/bao_hiem.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -413,22 +366,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: yc_thanh_toan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/nap_tien_dt.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -459,21 +405,13 @@ class _HomePageState extends State<HomePage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    width: 94,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
-                                            AssetImage(
-                                                'assets/icons/atm_cn.png'),
+                                            AssetImage('assets/icons/atm.png'),
                                             color: Color(0xff5077F7),
                                           ),
                                           Padding(
@@ -491,22 +429,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: thanhToan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/rut_tien_qr.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -523,22 +454,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/lai_xuat.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -555,22 +479,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: yc_thanh_toan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/ty_gia.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -589,26 +506,20 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
+                              SizedBox(height: 24),
 // Hàng 2
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    width: 94,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/khuyen_mai.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -625,22 +536,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: thanhToan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/dat_ve.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -657,22 +561,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: chuyenKhoan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
-                                                'assets/icons/ho_tro.png'),
-                                            color: Color(0xff5289F4),
+                                                'assets/icons/support.png'),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -689,22 +586,15 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 95,
-                                    height: 51,
-                                    margin: EdgeInsets.only(top: 24),
-                                    child: FloatingActionButton(
-                                      heroTag: null,
-                                      onPressed: null,
-                                      backgroundColor:
-                                          Color.fromRGBO(255, 255, 255, 0),
-                                      elevation: 0.0,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: yc_thanh_toan,
                                       child: Column(
                                         children: <Widget>[
                                           ImageIcon(
                                             AssetImage(
                                                 'assets/icons/tin_tuc.png'),
-                                            color: Color(0xff5289F4),
+                                            color: Color(0xff5077F7),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -746,7 +636,7 @@ class _HomePageState extends State<HomePage> {
                     ),
 // Row Tin tức
                     Container(
-                      margin: EdgeInsets.only(top: 16, bottom: 6),
+                      margin: EdgeInsets.only(top: 16, bottom: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -758,20 +648,23 @@ class _HomePageState extends State<HomePage> {
                               color: Color(0xff323232),
                             ),
                           ),
-                          Text(
-                            'Tất cả',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff5289F4),
+                          InkWell(
+                            child: Text(
+                              'Tất cả',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff5289F4),
+                              ),
                             ),
+                            onTap: news,
                           ),
                         ],
                       ),
                     ),
 // Slides Tin tức
                     CarouselSlider(
-                      height: 230,
+                      height: 212,
                       initialPage: 0,
                       viewportFraction: 1.0,
                       onPageChanged: (index) {
@@ -814,8 +707,10 @@ class _HomePageState extends State<HomePage> {
       builder: (context) {
         return Container(
           width: double.infinity,
+          // height: 800,
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.red[200],
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
@@ -834,515 +729,409 @@ class _HomePageState extends State<HomePage> {
                       color: Color(0xff323232),
                     ),
                   ),
-                  IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
+                  InkWell(
+                      child: Icon(Icons.close),
+                      onTap: () {
                         Navigator.of(context).pop();
                       })
                 ],
               ),
-              Container(
-                width: double.infinity,
-                // color: Colors.red,
-                child: Column(
-                  children: <Widget>[
+              SizedBox(height: 24),
+
 // Hàng 1
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 94,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/chuyen_khoan.png'),
-                                  color: Color(0xff5077F7),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Chuyển khoản',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/chuyen_khoan.png'),
+                            color: Color(0xff5077F7),
                           ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/thanh_toan.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Thanh toán',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Chuyển khoản',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/tiet_kiem.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Tiết kiệm',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/yc_thanh_toan.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Y/C thanh toán',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-// Hàng 2
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 94,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/vi_tai_khoan.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Tài khoản',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: thanhToan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/thanh_toan.png'),
+                            color: Color(0xff5077F7),
                           ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/the.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Dịch vụ thẻ',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Thanh toán',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/bao_hiem.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Bảo hiểm',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/nap_tien_dt.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Nạp tiền ĐT',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/tiet_kiem.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Tiết kiệm',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: yc_thanh_toan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/yc_thanh_toan.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Y/C thanh toán',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                width: double.infinity,
-                child: Column(
-                  children: <Widget>[
-// Hàng 1
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 94,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/atm_cn.png'),
-                                  color: Color(0xff5077F7),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'ATM/CN',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/rut_tien_qr.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Rút tiền QR',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/lai_xuat.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Lãi xuất',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/ty_gia.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Tỷ giá',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+              SizedBox(height: 24),
 // Hàng 2
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 94,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/khuyen_mai.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Khuyến mại',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/vi_tai_khoan.png'),
+                            color: Color(0xff5077F7),
                           ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/dat_ve.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Đặt vé',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Tài khoản',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/ho_tro.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Hỗ trợ',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 95,
-                          height: 51,
-                          margin: EdgeInsets.only(top: 24),
-                          child: FloatingActionButton(
-                            heroTag: null,
-                            onPressed: null,
-                            backgroundColor: Color.fromRGBO(255, 255, 255, 0),
-                            elevation: 0.0,
-                            child: Column(
-                              children: <Widget>[
-                                ImageIcon(
-                                  AssetImage('assets/icons/tin_tuc.png'),
-                                  color: Color(0xff5289F4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    'Tin tức',
-                                    style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xff444444)),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: thanhToan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/the.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Dịch vụ thẻ',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/bao_hiem.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Bảo hiểm',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: yc_thanh_toan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/nap_tien_dt.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Nạp tiền ĐT',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 24),
+// Hàng 3
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/atm.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'ATM/CN',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: thanhToan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/rut_tien_qr.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Rút tiền QR',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/lai_xuat.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Lãi xuất',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: yc_thanh_toan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/ty_gia.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Tỷ giá',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 24),
+// Hàng 4
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/khuyen_mai.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Khuyến mại',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: thanhToan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/dat_ve.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Đặt vé',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: chuyenKhoan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/support.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Hỗ trợ',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: yc_thanh_toan,
+                      child: Column(
+                        children: <Widget>[
+                          ImageIcon(
+                            AssetImage('assets/icons/tin_tuc.png'),
+                            color: Color(0xff5077F7),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Text(
+                              'Tin tức',
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff444444)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -1359,5 +1148,15 @@ class _HomePageState extends State<HomePage> {
   void chuyenKhoan() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => ChuyenKhoan()));
+  }
+
+  void yc_thanh_toan() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => YCThanhToan()));
+  }
+
+  void news() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => NewsPage()));
   }
 }

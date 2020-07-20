@@ -87,6 +87,7 @@ class _TabsPageState extends State<TabsPage> {
         onTap: (index) {
           setState(() {
             _currentIndex = index;
+            // _currentIndex._color
             // _color = Color(0xff89B9F6);
           });
         },

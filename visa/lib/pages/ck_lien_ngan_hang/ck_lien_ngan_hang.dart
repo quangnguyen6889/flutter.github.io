@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:visa/pages/xac_nhan_gd/xac_nhan_gd.dart';
+import 'package:visa/pages/giao_dich/xac_nhan_gd.dart';
 
 class CKLienNganHang extends StatefulWidget {
   @override
@@ -39,20 +39,14 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
           ),
           Container(
             width: double.infinity,
-            height: 500,
             // color: Colors.red,
             margin: EdgeInsets.only(top: 123),
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: ListView(
               children: <Widget>[
-                Container(
-                  alignment: Alignment.topLeft,
-                  // margin: EdgeInsets.only(bottom: 24),
-                  child: Text(
-                    'Đến',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  'Đến',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 8),
                 Container(
@@ -61,7 +55,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                   padding: EdgeInsets.only(left: 12),
                   decoration: BoxDecoration(
                     // color: Color(0xfff7f6f6),
-                    color: Colors.blue[100],
+                    color: Color(0xffe9e9e9),
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: TextField(
@@ -82,7 +76,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     // color: Color(0xfff7f6f6),
-                    color: Colors.blue[100],
+                    color: Color(0xffe9e9e9),
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: DropdownButtonHideUnderline(
@@ -121,7 +115,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     // color: Color(0xfff7f6f6),
-                    color: Colors.blue[100],
+                    color: Color(0xffe9e9e9),
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: Row(
@@ -143,7 +137,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                       Container(
                         padding: EdgeInsets.only(left: 12),
                         decoration: BoxDecoration(
-                          color: Colors.amber,
+                          // color: Colors.amber,
                           border: Border(
                             left: BorderSide(
                               color: Color(0xffD7DBE6),
@@ -160,7 +154,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                                 value: item,
                                 child: Text(
                                   item,
-                                  style: TextStyle(color: Color(0xff2E2E2E)),
+                                  style: TextStyle(color: Color(0xff5289F4)),
                                 ),
                               );
                             }).toList(),
@@ -182,7 +176,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     // color: Color(0xfff7f6f6),
-                    color: Colors.blue[100],
+                    color: Color(0xffe9e9e9),
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: Row(
@@ -210,7 +204,7 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                               value: item,
                               child: Text(
                                 item,
-                                style: TextStyle(color: Color(0xff2E2E2E)),
+                                style: TextStyle(color: Color(0xff5289F4)),
                               ),
                             );
                           }).toList(),
@@ -244,10 +238,11 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     // color: Color(0xfff7f6f6),
-                    color: Colors.blue[100],
+                    color: Color(0xffe9e9e9),
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: TextField(
+                    maxLines: null,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Nội dung',
@@ -276,9 +271,11 @@ class _CKLienNganHangState extends State<CKLienNganHang> {
                     ), //`Text` to display
                   ),
                 ),
+                SizedBox(height: 16),
               ],
             ),
           ),
+
 // Thông tin tài khoản
           Container(
             width: double.infinity,
